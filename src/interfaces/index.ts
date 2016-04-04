@@ -10,7 +10,7 @@ export interface IFindAll {
 }
 
 export interface IProcessOne {
-  (rawReplacer: any, pInfo: IPInfo): string
+  (fmtStr: string, pInfo: IPInfo, rawReplacer: any, replacerPosition: number): string
 }
 
 export interface IPInfo {

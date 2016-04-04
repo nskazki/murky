@@ -15,7 +15,7 @@ export const findAll: IFindAll = function(fmtStr) {
   return founds.map(pos => new PInfo(pos, handlerName, this))
 }
 
-export const processOne: IProcessOne = function(rawReplacer, pInfo) {
+export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, replacerPosition) {
   const multilineReplacer = inspect(rawReplacer, { depth: 0, colors: true })
   const onelineReplacer = multilineReplacer.replace(/,\n\s+/g, ', ')
   return onelineReplacer

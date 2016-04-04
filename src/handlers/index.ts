@@ -21,8 +21,8 @@ export const findAll: IFindAll = function(fmtStr) {
   return psInfo
 }
 
-export const processOne: IProcessOne = function(rawReplacer, pInfo) {
-  const replacer = pInfo.handlerLink.processOne(rawReplacer, pInfo)
+export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, replacerPosition) {
+  const replacer = pInfo.handlerLink.processOne(fmtStr, pInfo, rawReplacer, replacerPosition)
   return replacer
 }
 

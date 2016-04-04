@@ -61,14 +61,15 @@ export default function murky(fmtStr: string, ...rawReplacers: Array<any>): stri
       \n\t replacers.length: ${rawReplacers.length}\
       \n\t placeholders info: \n${inspect(psInfo)}\n`)
 
-  // get replacers
-  const replacers = rawReplacers.map((rawReplacer, index) => {
-    const pInfo = psInfo[index]
-    return handlers.processOne(rawReplacer, pInfo)
-  })
+  // calc result string
+  let replacers: Array<string> = []
+  let positions: Array<number> = []
+  let resStr = fmtStr
 
-  // calc replacers positions
-  const positions = psInfo.map((pInfo, index) => {
+  rawReplacers.forEach((rawReplacer, index) => {
+    const pInfo = psInfo[index]
+
+    // calc current replacer position
     const rsLength = replacers
       .slice(0, index)
       .reduce((acc, replacer) => acc + replacer.length, 0)
@@ -76,8 +77,20 @@ export default function murky(fmtStr: string, ...rawReplacers: Array<any>): stri
       .slice(0, index)
       .reduce((acc, pInfo) => acc + pInfo.placeholder.length, 0)
     const fmtPartLength = pInfo.indexStart
-    const resStartIndex = fmtPartLength - psLength + rsLength
-    return resStartIndex
+    const position = fmtPartLength - psLength + rsLength
+
+    // get current replacer
+    const replacer = handlers.processOne(
+      resStr, pInfo, rawReplacer, position)
+
+    // store for next iterations
+    replacers.push(replacer)
+    positions.push(position)
+
+    // update result string
+    const prev = resStr.substring(0, position)
+    const post = resStr.substring(position + pInfo.length)
+    resStr = prev + replacer + post
   })
 
   // check replacers
@@ -113,17 +126,6 @@ export default function murky(fmtStr: string, ...rawReplacers: Array<any>): stri
     throw new Error(`murky: internal problem: \n ${rsErrors.join('\n ')}`)
   }
 
-  // calc result string
-  let resStr = fmtStr
-  psInfo.forEach((pInfo, index) => {
-    const replacer = replacers[index]
-    const position = positions[index]
-
-    const prev = resStr.substring(0, position)
-    const post = resStr.substring(position + pInfo.length)
-
-    resStr = prev + replacer + post
-  })
-
+  // return result string
   return resStr
 }

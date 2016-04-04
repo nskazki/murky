@@ -12,6 +12,7 @@
   },
   "files": [
     "typings/main.d.ts",
+    "custom-typings/main.d.ts",
 
     "src/interfaces/index.ts",
 
@@ -22,6 +23,7 @@
     "src/handlers/stringHandler.ts",
     "src/handlers/lineHandler.ts",
     "src/handlers/jsonHandler.ts",
+    "src/handlers/tabHandler.ts",
 
     "src/index.ts",
     "test/index.test.ts"

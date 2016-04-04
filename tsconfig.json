@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node",
+    "outDir": "build",
+    "declaration": true,
+    "listFiles": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": false
+  },
+  "files": [
+    "typings/main.d.ts",
+
+    "src/interfaces/index.ts",
+
+    "src/helpers/pInfo.ts",
+    "src/helpers/regExp.ts",
+
+    "src/handlers/index.ts",
+    "src/handlers/stringHandler.ts",
+    "src/handlers/lineHandler.ts",
+    "src/handlers/jsonHandler.ts",
+
+    "src/index.ts",
+    "test/index.test.ts"
+  ]
+}

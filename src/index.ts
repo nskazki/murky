@@ -1,10 +1,12 @@
 'use strict'
 
 import handlers from './handlers'
+import { IMurky } from './interfaces'
 import { inspect } from 'util'
 import { isString } from 'lodash'
+import uncolor = require('uncolor')
 
-export default function murky(fmtStr: string, ...rawReplacers: Array<any>): string {
+const murky: IMurky = (fmtStr, ...rawReplacers) => {
   // check user input: fmtStr
   if (!isString(fmtStr))
     throw new Error(`murky: input problem: the first arg must be a string!\
@@ -129,3 +131,16 @@ export default function murky(fmtStr: string, ...rawReplacers: Array<any>): stri
   // return result string
   return resStr
 }
+
+// it's required for the *.d.ts formation
+export default murky
+export const color = murky
+export const nocolor: IMurky = (fmtStr, ...rawReplacers) => {
+  return uncolor(murky(fmtStr, ...rawReplacers))
+}
+
+// ES6 Modules default exports interop with CommonJS
+module.exports = murky
+module.exports.default = murky
+module.exports.color = color
+module.exports.nocolor = nocolor

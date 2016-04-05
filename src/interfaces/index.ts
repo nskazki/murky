@@ -1,5 +1,9 @@
 'use strict'
 
+export interface IMurky {
+  (fmtStr: string, ...rawReplacers: Array<any>): string
+}
+
 export interface IHandler {
   findAll: IFindAll,
   processOne:  IProcessOne

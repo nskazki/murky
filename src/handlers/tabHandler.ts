@@ -14,7 +14,9 @@ export const findAll: IFindAll = function(fmtStr) {
   let str = fmtStr.replace(/%{2}/g, '')
   let pRE = /%t/g
   const founds = execGlobal(str, pRE)
-  return founds.map(pos => new PInfo(pos, handlerName, this))
+  return founds.map(pos => {
+    return new PInfo(pos, handlerName, this)
+  })
 }
 
 export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, replacerPosition) {

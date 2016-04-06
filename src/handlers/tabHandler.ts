@@ -11,9 +11,7 @@ import stringWidth = require('string-width')
 const handlerName = basename(__filename, extname(__filename))
 
 export const findAll: IFindAll = function(fmtStr) {
-  let str = fmtStr.replace(/%{2}/g, '')
-  let pRE = /%t/g
-  const founds = execGlobal(str, pRE)
+  const founds = execGlobal(fmtStr, /%t/g)
   return founds.map(pos => {
     return new PInfo(pos, handlerName, this)
   })
@@ -24,7 +22,8 @@ export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, repl
     .replace(/\r\v/g, '\n')
     .replace(/\v\r/g, '\n')
   const lineStr = last(splitByChars(prevStr, [ '\n', '\r' ]))
-  const lineSize = stringWidth(lineStr)
+  const normStr = lineStr.replace(/%%/g, '')
+  const lineSize = stringWidth(normStr)
 
   const leftPad = repeat(' ', lineSize)
   const replacer = inspect(rawReplacer, { depth: 0, colors: true })

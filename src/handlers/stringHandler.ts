@@ -9,9 +9,7 @@ import { inspect } from 'util'
 const handlerName = basename(__filename, extname(__filename))
 
 export const findAll: IFindAll = function(fmtStr) {
-  const str = fmtStr.replace(/%{2}/g, '')
-  const pRE = /%s/g
-  const founds = execGlobal(str, pRE)
+  const founds = execGlobal(fmtStr, /%s/g)
   return founds.map(pos => {
     return new PInfo(pos, handlerName, this)
   })

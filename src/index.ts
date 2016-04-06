@@ -14,7 +14,8 @@ const murky: IMurky = (fmtStr, ...rawReplacers) => {
       \n\t arg data: ${inspect(fmtStr)}`)
 
   // get placeholders info
-  const psInfo = handlers.findAll(fmtStr)
+  const clrStr = fmtStr.replace(/%%/g, '  ')
+  const psInfo = handlers.findAll(clrStr)
 
   // check placeholders info
   const psInfoOrderErrors = psInfo.map((pInfoA, indexA) => {
@@ -94,6 +95,9 @@ const murky: IMurky = (fmtStr, ...rawReplacers) => {
     const post = resStr.substring(position + pInfo.length)
     resStr = prev + replacer + post
   })
+
+  // normalize resStr
+  resStr = resStr.replace(/%%/g, '%')
 
   // check replacers
   const rsOrderErrors = positions.map((posA, indexA) => {

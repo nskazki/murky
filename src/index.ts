@@ -5,6 +5,7 @@ import { IMurky } from './interfaces'
 import { inspect } from 'util'
 import { isString } from 'lodash'
 import uncolor = require('uncolor')
+import supportsColor = require('supports-color')
 
 const murky: IMurky = (fmtStr, ...rawReplacers) => {
   // check user input: fmtStr
@@ -138,9 +139,15 @@ const murky: IMurky = (fmtStr, ...rawReplacers) => {
 
 // it's required for the *.d.ts formation
 export default murky
-export const color = murky
+
 export const nocolor: IMurky = (fmtStr, ...rawReplacers) => {
   return uncolor(murky(fmtStr, ...rawReplacers))
+}
+
+export const color: IMurky = (fmtStr, ...rawReplacers) => {
+  return supportsColor
+    ? murky(fmtStr, ...rawReplacers)
+    : nocolor(fmtStr, ...rawReplacers)
 }
 
 // ES6 Modules default exports interop with CommonJS

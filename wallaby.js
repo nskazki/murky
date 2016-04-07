@@ -7,7 +7,10 @@ module.exports = function () {
       'test/**/*.ts'
     ],
     env: {
-      type: 'node'
+      type: 'node',
+      params: {
+        env: 'FORCE_COLOR=true'
+      }
     }
   }
 }

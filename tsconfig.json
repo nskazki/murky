@@ -26,6 +26,8 @@
     "src/handlers/tabHandler.ts",
 
     "src/index.ts",
-    "test/jsonHandler.test.ts"
+
+    "test/jsonHandler.test.ts",
+    "test/stringHandler.test.ts"
   ]
 }

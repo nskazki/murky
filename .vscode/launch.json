@@ -11,7 +11,7 @@
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": null,
             "runtimeArgs": [],
-            "env": {},
+            "env": { "FORCE_COLOR": "true" },
             "externalConsole": false,
             "sourceMaps": true,
             "outDir": "${workspaceRoot}/build"
@@ -26,7 +26,7 @@
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": null,
             "runtimeArgs": [],
-            "env": {},
+            "env": { "FORCE_COLOR": "true" },
             "externalConsole": false,
             "sourceMaps": true,
             "outDir": "${workspaceRoot}/build"

@@ -28,6 +28,7 @@
     "src/index.ts",
 
     "test/jsonHandler.test.ts",
-    "test/stringHandler.test.ts"
+    "test/stringHandler.test.ts",
+    "test/lineHandler.test.ts"
   ]
 }

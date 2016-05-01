@@ -145,8 +145,8 @@ describe('string', () => {
     const cRes = color('%s', date)
     const nRes = nocolor('%s', date)
 
-    assert.equal(cRes, magenta('Fri Feb 12 1999 23:12:30 GMT+0300 (MSK)'))
-    assert.equal(nRes, 'Fri Feb 12 1999 23:12:30 GMT+0300 (MSK)')
+    assert.equal(cRes, magenta('1999-02-12T20:12:30.000Z'))
+    assert.equal(nRes, '1999-02-12T20:12:30.000Z')
   })
 
   it('date x 2', () => {
@@ -156,11 +156,11 @@ describe('string', () => {
     const nRes = nocolor('%s %s', date1, date2)
 
     const cExp =
-         `${magenta('Fri Feb 12 1999 23:12:30 GMT+0300 (MSK)')}`
-      + ` ${magenta('Fri Feb 12 1999 23:12:30 GMT+0300 (MSK)')}`
+         `${magenta('1999-02-12T20:12:30.000Z')}`
+      + ` ${magenta('1999-02-12T20:12:30.000Z')}`
     const nExp =
-         `Fri Feb 12 1999 23:12:30 GMT+0300 (MSK)`
-      + ` Fri Feb 12 1999 23:12:30 GMT+0300 (MSK)`
+         `1999-02-12T20:12:30.000Z`
+      + ` 1999-02-12T20:12:30.000Z`
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)

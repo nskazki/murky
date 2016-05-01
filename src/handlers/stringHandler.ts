@@ -7,7 +7,7 @@ import { extname, basename } from 'path'
 import { green } from 'chalk'
 import { inspect } from 'util'
 import { isString } from 'lodash'
-import uncolor = require('uncolor')
+import stringRender from 'string-render'
 
 const handlerName = basename(__filename, extname(__filename))
 
@@ -20,7 +20,7 @@ export const findAll: IFindAll = function(fmtStr) {
 
 export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, replacerPosition) {
   return isString(rawReplacer)
-    ? green(uncolor(rawReplacer))
+    ? green(stringRender(rawReplacer))
     : inspect(rawReplacer, { depth: null, colors: true })
 }
 

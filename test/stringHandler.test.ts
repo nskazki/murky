@@ -82,10 +82,8 @@ describe('string', () => {
     const cRes = color('%s %s', '\r\n1', '\n')
     const nRes = nocolor('%s %s', '\r\n1', '\n')
 
-    const cExp =
-         `${green('\r\n1')}`
-      + ` ${green('\n')}`
-    const nExp = '\r\n1 \n'
+    const cExp =  green('\n1') + ' ' + green('\n')
+    const nExp = '\n1 \n'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)

@@ -1,6 +1,6 @@
 {
   "name": "murky",
-  "description": "like util.format but more strict and with additional placeholders",
+  "description": "like util.format with additional placeholders",
   "version": "1.0.0",
   "license": "MIT",
   "main": "build/src/index.js",

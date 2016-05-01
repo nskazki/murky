@@ -1,5 +1,3 @@
 /// <reference path="string-width/index.d.ts" />
 /// <reference path="uncolor/index.d.ts" />
 /// <reference path="supports-color/index.d.ts" />
-/// <reference path="ansi-regex/index.d.ts" />
-/// <reference path="code-point-at/index.d.ts" />

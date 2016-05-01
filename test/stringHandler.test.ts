@@ -191,11 +191,11 @@ describe('string', () => {
   })
 
   it('promise x 2', () => {
-    const cRes = color('%s %s', Promise.resolve(1), Promise.reject(new Error('!')))
-    const nRes = nocolor('%s %s', Promise.resolve(1), Promise.reject(new Error('!')))
+    const cRes = color('%s %s', Promise.resolve(1), Promise.reject(2))
+    const nRes = nocolor('%s %s', Promise.resolve(1), Promise.reject(2))
 
-    const cExp = `Promise { ${yellow('1') } } Promise { <rejected> [Error: !] }`
-    const nExp = 'Promise { 1 } Promise { <rejected> [Error: !] }'
+    const cExp = `Promise { ${yellow('1')} } Promise { <rejected> ${yellow('2') } }`
+    const nExp = 'Promise { 1 } Promise { <rejected> 2 }'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)

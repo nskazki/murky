@@ -1,13 +1,8 @@
 'use strict'
 
 import { color, nocolor } from '../src'
-import { gray, bold, blue, magenta, yellow, green } from 'chalk'
+import { gray, bold, yellow, green } from 'chalk'
 import assert = require('power-assert')
-
-const emptyMagenta = () => magenta(' ').replace(' ', '')
-const emptyYellow = () => yellow(' ').replace(' ', '')
-const emptyGreen = () => green(' ').replace(' ', '')
-const emptyBlue = () => blue(' ').replace(' ', '')
 
 describe('line', () => {
   it('string: oneline', () => {
@@ -31,7 +26,7 @@ describe('line', () => {
     const cRes = color('%l', '\n')
     const nRes = nocolor('%l', '\n')
 
-    assert.equal(cRes, emptyGreen())
+    assert.equal(cRes, '')
     assert.equal(nRes, '')
   })
 
@@ -68,11 +63,11 @@ describe('line', () => {
   })
 
   it('string: multi escape sequences and multi spaces', () => {
-    const cRes = color('%l', 'h\v\ve\rl\tl\b\bo\f  w\no\r\v\r\vr\v\rl\nd')
-    const nRes = nocolor('%l', 'h\v\ve\rl\tl\b\bo\f  w\no\r\v\r\vr\v\rl\nd')
+    const cRes = color('%l', 'h\ve\vl\rl\f\bo \nw\no\r\v\r\vr\v\rl\nd !')
+    const nRes = nocolor('%l', 'h\ve\vl\rl\f\bo \nw\no\r\v\r\vr\v\rl\nd !')
 
-    assert.equal(cRes, green('hello w o r l d'))
-    assert.equal(nRes, 'hello w o r l d')
+    assert.equal(cRes, green('h e l l o w o r l d !'))
+    assert.equal(nRes, 'h e l l o w o r l d !')
   })
 
   it('string: simple colored - empty', () => {
@@ -82,49 +77,6 @@ describe('line', () => {
 
     assert.equal(cRes, '')
     assert.equal(nRes, '')
-  })
-
-  it('string: simple colored - \\n x 1', () => {
-    const replacer = blue('\n')
-    const cRes = color('%l', replacer)
-    const nRes = nocolor('%l', replacer)
-
-    assert.equal(cRes, green(emptyBlue()))
-    assert.equal(nRes, '')
-  })
-
-  it('string: medium colored', () => {
-    const replacer = blue('\n') + ' ' + blue('\n')
-    const cRes = color('%l', replacer)
-    const nRes = nocolor('%l', replacer)
-
-    assert.equal(cRes, green(emptyBlue() + emptyBlue()))
-    assert.equal(nRes, '')
-  })
-
-
-  it('string: hard colored', () => {
-    const replacer = magenta(yellow('\n') + 'wow' + blue('\n hello \n'))
-    const cRes = color('%l', replacer)
-    const nRes = nocolor('%l', replacer)
-
-    assert.equal(cRes, green(magenta(emptyYellow() + 'wow' + blue(' hello'))))
-    assert.equal(nRes, 'wow hello')
-  })
-
-  it('string: hard colored with multi spaces', () => {
-    const replacer = blue(  yellow('\n  \n \r')
-                          + magenta('   ')
-                          + '   wow \n '
-                          + magenta(' \n hello \n'))
-    const cRes = color('%l', replacer)
-    const nRes = nocolor('%l', replacer)
-
-    assert.equal(cRes, green(blue(  emptyYellow()
-                                  + emptyMagenta()
-                                  + 'wow '
-                                  + magenta('hello'))))
-    assert.equal(nRes, 'wow hello')
   })
 
   it('array: number x 1', () => {

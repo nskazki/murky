@@ -18,7 +18,6 @@
 
     "src/helpers/pInfo.ts",
     "src/helpers/regExp.ts",
-    "src/helpers/string.ts",
 
     "src/handlers/index.ts",
     "src/handlers/stringHandler.ts",
@@ -27,8 +26,6 @@
     "src/handlers/tabHandler.ts",
 
     "src/index.ts",
-
-    "test/stringRender.test.ts",
 
     "test/jsonHandler.test.ts",
     "test/stringHandler.test.ts",

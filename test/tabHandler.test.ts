@@ -2,7 +2,7 @@
 
 import { color, nocolor } from '../src'
 import { inspect } from 'util'
-import { gray, bold, blue, magenta, yellow, green } from 'chalk'
+import { green } from 'chalk'
 import assert = require('power-assert')
 
 describe('tab', () => {

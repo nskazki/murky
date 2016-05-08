@@ -234,4 +234,19 @@ describe('line', () => {
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
   })
+
+  it('error x 1', () => {
+    const replacer = {
+      message: 'Some\rproblem happens\b!\r\vArguments: [ 123 ]',
+      stack: 'long-borred-stack'
+    }
+
+    const cRes = color('%l', replacer)
+    const nRes = nocolor('%l', replacer)
+
+    const nExp = '[Error: problem happen! Arguments: [ 123 ]]'
+
+    assert.equal(cRes, nRes)
+    assert.equal(nRes, nExp)
+  })
 })

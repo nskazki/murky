@@ -7,6 +7,7 @@ import { extname, basename } from 'path'
 import { green, magenta } from 'chalk'
 import { inspect } from 'util'
 import { isString, isDate } from 'lodash'
+import { fmtError, isIErrorLike } from 'error-shortener'
 import stringRender from 'string-render'
 
 const handlerName = basename(__filename, extname(__filename))
@@ -24,6 +25,9 @@ export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, repl
 
   if (isString(rawReplacer))
     return green(stringRender(rawReplacer))
+
+  if (isIErrorLike(rawReplacer))
+    return fmtError(rawReplacer)
 
   return inspect(rawReplacer, { depth: null, colors: true })
 }

@@ -2,6 +2,7 @@
 
 import { color, nocolor } from '../src'
 import { bold, red, gray, magenta, yellow, green } from 'chalk'
+import { inspect } from 'util'
 import assert = require('power-assert')
 
 describe('string', () => {
@@ -199,6 +200,31 @@ describe('string', () => {
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
+  })
+
+  it('error x 1', () => {
+    const error = {
+      name:    `NewError`,
+      message: `Text added from some place!\
+                \n\t SomeMeta: foo=bar; other=abc\
+                \n\t OriginalError: something happened!`,
+      stack:   `SomeError: something happened!
+                    at Timer.listOnTimeout (timers.js:92:15)`
+    }
+
+    const cRes = color('%s', error)
+    const nRes = nocolor('%s', error)
+
+    const nExp =
+      `NewError: Text added from some place!`
+    + `\n         SomeMeta: foo=bar; other=abc`
+    + `\n         OriginalError: something happened!`
+    + `\nStack:`
+    + `\n    SomeError: something happened!`
+    + `\n    at Timer.listOnTimeout (timers.js:92:15)`
+
+    assert.equal(cRes, nRes)
+    assert.equal(inspect(nRes), inspect(nExp))
   })
 
   it('%%', () => {

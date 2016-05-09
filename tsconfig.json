@@ -18,18 +18,21 @@
 
     "src/helpers/pInfo.ts",
     "src/helpers/regExp.ts",
+    "src/helpers/number.ts",
 
     "src/handlers/index.ts",
     "src/handlers/stringHandler.ts",
     "src/handlers/lineHandler.ts",
     "src/handlers/jsonHandler.ts",
     "src/handlers/tabHandler.ts",
+    "src/handlers/numberHandler.ts",
 
     "src/index.ts",
 
     "test/jsonHandler.test.ts",
     "test/stringHandler.test.ts",
     "test/lineHandler.test.ts",
-    "test/tabHandler.test.ts"
+    "test/tabHandler.test.ts",
+    "test/numberHandler.test.ts"
   ]
 }

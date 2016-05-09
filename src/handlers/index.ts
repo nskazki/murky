@@ -6,10 +6,12 @@ import jsonHandler from './jsonHandler'
 import lineHandler from './lineHandler'
 import stringHandler from './stringHandler'
 import tabHandler from './tabHandler'
+import numberHandler from './numberHandler'
 
 const handlers = [
   jsonHandler, lineHandler,
-  stringHandler, tabHandler ]
+  stringHandler, tabHandler,
+  numberHandler ]
 
 export const findAll: IFindAll = function(fmtStr) {
   const psInfo = handlers

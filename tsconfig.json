@@ -26,6 +26,7 @@
     "src/handlers/jsonHandler.ts",
     "src/handlers/tabHandler.ts",
     "src/handlers/numberHandler.ts",
+    "src/handlers/msHandler.ts",
 
     "src/index.ts",
 
@@ -33,6 +34,7 @@
     "test/stringHandler.test.ts",
     "test/lineHandler.test.ts",
     "test/tabHandler.test.ts",
-    "test/numberHandler.test.ts"
+    "test/numberHandler.test.ts",
+    "test/msHandler.test.ts"
   ]
 }

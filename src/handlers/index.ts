@@ -7,11 +7,12 @@ import lineHandler from './lineHandler'
 import stringHandler from './stringHandler'
 import tabHandler from './tabHandler'
 import numberHandler from './numberHandler'
+import msHandler from './msHandler'
 
 const handlers = [
   jsonHandler, lineHandler,
   stringHandler, tabHandler,
-  numberHandler ]
+  numberHandler, msHandler ]
 
 export const findAll: IFindAll = function(fmtStr) {
   const psInfo = handlers

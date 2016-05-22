@@ -11,7 +11,7 @@
     "suppressImplicitAnyIndexErrors": false
   },
   "files": [
-    "typings/main.d.ts",
+    "typings/index.d.ts",
     "custom-typings/main.d.ts",
 
     "src/interfaces/index.ts",

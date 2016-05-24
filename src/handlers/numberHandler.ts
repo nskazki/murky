@@ -3,13 +3,13 @@
 import { IFindAll, IProcessOne, IHandler } from '../interfaces'
 import { PInfoRE as PInfo } from '../helpers/pInfo'
 import { execGlobal } from '../helpers/regExp'
-import { toNumber } from '../helpers/number'
 import { extname, basename } from 'path'
 import { isNumber, isInteger,
   isFinite, isString, last } from 'lodash'
 import isNegativeZero = require('is-negative-zero')
 import { yellow } from 'chalk'
 import { inspect } from 'util'
+import str2num from 'str2num'
 
 const handlerName = basename(__filename, extname(__filename))
 const isNegative = (v: number) => isNegativeZero(v) || (v < 0)
@@ -23,7 +23,7 @@ export const findAll: IFindAll = function(fmtStr) {
 
 export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, replacerPosition) {
   const numReplacer = isString(rawReplacer)
-    ? toNumber(rawReplacer)
+    ? str2num(rawReplacer)
     : rawReplacer
 
   if (!isNumber(numReplacer))

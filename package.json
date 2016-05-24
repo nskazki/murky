@@ -38,6 +38,7 @@
     "parse-large-ms": "^1.0.1",
     "parse-ms": "^1.0.1",
     "pluralize": "^2.0.0",
+    "str2num": "^1.0.2",
     "string-render": "^1.0.5",
     "string-true-oneline": "^1.0.0",
     "string-width": "^1.0.1",

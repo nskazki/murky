@@ -18,7 +18,6 @@
 
     "src/helpers/pInfo.ts",
     "src/helpers/regExp.ts",
-    "src/helpers/number.ts",
 
     "src/handlers/index.ts",
     "src/handlers/stringHandler.ts",

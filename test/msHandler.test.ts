@@ -105,20 +105,19 @@ describe('ms', () => {
   })
 
   it('throw: wrong replacer type', () => {
-    assert.throws(() => color('%ms', []))
-    assert.throws(() => color('%ms', {}))
-    assert.throws(() => color('%ms', /./))
+    assert.throws(() => color('%ms', []), '[]')
+    assert.throws(() => color('%ms', {}), '{}')
+    assert.throws(() => color('%ms', /./), '/./')
   })
 
   it('throw: string has unexpected format', () => {
     assert.throws(() => color('%ms', ''))
     assert.throws(() => color('%ms', '.'))
-    assert.throws(() => color('%ms', 'e'))
-    assert.throws(() => color('%ms', '.e'))
-    assert.throws(() => color('%ms', '.e3'))
-    assert.throws(() => color('%ms', '- 123'))
-    assert.throws(() => color('%ms', '-123e'))
-    assert.throws(() => color('%ms', 'e123'))
+    assert.throws(() => color('%ms', 'e'), 'e')
+    assert.throws(() => color('%ms', '.e'), '.e')
+    assert.throws(() => color('%ms', '.e3'), '.e3')
+    assert.throws(() => color('%ms', '-123e'), '-123e')
+    assert.throws(() => color('%ms', 'e123'), 'e123')
   })
 
   it('throw: placeholders < args', () => {

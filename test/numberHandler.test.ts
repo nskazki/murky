@@ -392,20 +392,19 @@ describe('number', () => {
   })
 
   it('throw: wrong replacer type', () => {
-    assert.throws(() => color('%n', []))
-    assert.throws(() => color('%n', {}))
-    assert.throws(() => color('%n', /./))
+    assert.throws(() => color('%n', []), '[]')
+    assert.throws(() => color('%n', {}), '{}')
+    assert.throws(() => color('%n', /./), '/./')
   })
 
   it('throw: string has unexpected format', () => {
-    assert.throws(() => color('%n', ''))
-    assert.throws(() => color('%n', '.'))
-    assert.throws(() => color('%n', 'e'))
-    assert.throws(() => color('%n', '.e'))
-    assert.throws(() => color('%n', '.e3'))
-    assert.throws(() => color('%n', '- 123'))
-    assert.throws(() => color('%n', '-123e'))
-    assert.throws(() => color('%n', 'e123'))
+    assert.throws(() => color('%n', ''), '')
+    assert.throws(() => color('%n', '.'), '.')
+    assert.throws(() => color('%n', 'e'), 'e')
+    assert.throws(() => color('%n', '.e'), '.e')
+    assert.throws(() => color('%n', '.e3'), '.e3')
+    assert.throws(() => color('%n', '-123e'), '-123e')
+    assert.throws(() => color('%n', 'e123'), 'e123')
   })
 
   it('throw: placeholders < args', () => {

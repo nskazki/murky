@@ -3,7 +3,6 @@
 import { IFindAll, IProcessOne, IHandler } from '../interfaces'
 import { PInfoRE as PInfo } from '../helpers/pInfo'
 import { execGlobal } from '../helpers/regExp'
-import { toNumber } from '../helpers/number'
 import { extname, basename } from 'path'
 import { isNumber, isFinite,
   isString, find, last, get } from 'lodash'
@@ -11,6 +10,7 @@ import { yellow } from 'chalk'
 import { inspect } from 'util'
 import pluralize = require('pluralize')
 import parseMs from 'parse-large-ms'
+import str2num from 'str2num'
 
 const handlerName = basename(__filename, extname(__filename))
 
@@ -40,7 +40,7 @@ const short = {
 
 export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, replacerPosition) {
   const msReplacer = isString(rawReplacer)
-    ? toNumber(rawReplacer)
+    ? str2num(rawReplacer)
     : rawReplacer
 
   if (!isNumber(msReplacer) || !isFinite(msReplacer))

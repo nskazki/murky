@@ -203,10 +203,10 @@ describe('string', () => {
         const cRes = color('%s', Promise.resolve(123))
         const nRes = nocolor('%s', Promise.resolve(123))
 
-        const cExp = semver.gte(process.version, 'v4.0.0')
+        const cExp = semver.gte(process.version, 'v3.0.0')
           ? `Promise { ${yellow('123')} }`
           : `{}`
-        const nExp = semver.gte(process.version, 'v4.0.0')
+        const nExp = semver.gte(process.version, 'v3.0.0')
           ? `Promise { 123 }`
           : `{}`
 
@@ -220,10 +220,10 @@ describe('string', () => {
         const cRes = color('%s %s', Promise.resolve(1), Promise.reject(2))
         const nRes = nocolor('%s %s', Promise.resolve(1), Promise.reject(2))
 
-        const cExp = semver.gte(process.version, 'v4.0.0')
+        const cExp = semver.gte(process.version, 'v3.0.0')
           ? `Promise { ${yellow('1')} } Promise { <rejected> ${yellow('2') } }`
           : `{} {}`
-        const nExp = semver.gte(process.version, 'v4.0.0')
+        const nExp = semver.gte(process.version, 'v3.0.0')
           ? 'Promise { 1 } Promise { <rejected> 2 }'
           : `{} {}`
 

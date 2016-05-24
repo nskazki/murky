@@ -109,7 +109,7 @@ describe('json', () => {
     const cRes = color('%j', date)
     const nRes = nocolor('%j', date)
     assert.equal(cRes, nRes)
-    assert.equal(cRes, '"1999-02-12T20:12:30.000Z"')
+    assert.equal(cRes, `"${date.toISOString()}"`)
   })
 
   it('date x 2', () => {
@@ -118,7 +118,7 @@ describe('json', () => {
     const cRes = color('%j = %j', date1, date2)
     const nRes = nocolor('%j = %j', date1, date2)
     assert.equal(cRes, nRes)
-    assert.equal(cRes, '"1999-02-12T20:12:30.000Z" = "1999-02-12T20:12:30.000Z"')
+    assert.equal(cRes, `"${date1.toISOString()}" = "${date2.toISOString()}"`)
   })
 
   it('regexp x 1', () => {

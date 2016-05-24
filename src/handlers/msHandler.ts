@@ -5,24 +5,37 @@ import { PInfoRE as PInfo } from '../helpers/pInfo'
 import { execGlobal } from '../helpers/regExp'
 import { toNumber } from '../helpers/number'
 import { extname, basename } from 'path'
-import { isNumber, isFinite, isString } from 'lodash'
+import { isNumber, isFinite,
+  isString, find, last, get } from 'lodash'
 import { yellow } from 'chalk'
 import { inspect } from 'util'
-import parseMs = require('parse-ms')
+import pluralize = require('pluralize')
+import parseMs from 'parse-large-ms'
 
 const handlerName = basename(__filename, extname(__filename))
-const plural = (count: number, baseName: string) => {
-  const pName = (count === 0 || count > 1.5 || count < -1.5)
-    ? baseName + 's'
-    : baseName
-  return `${count} ${pName}`
-}
 
 export const findAll: IFindAll = function(fmtStr) {
   const founds = execGlobal(fmtStr, /%ms|%m/g)
   return founds.map(pos => {
     return new PInfo(pos, handlerName, this)
   })
+}
+
+const rules = [
+  { name: 'millenniums',  pair: [ 'millenniums', 'centuries'    ] },
+  { name: 'centuries',    pair: [ 'centuries',   'decades'      ] },
+  { name: 'decades',      pair: [ 'decades',     'years'        ] },
+  { name: 'years',        pair: [ 'years',       'months'       ] },
+  { name: 'months',       pair: [ 'months',      'days'         ] },
+  { name: 'days',         pair: [ 'days',        'hours'        ] },
+  { name: 'hours',        pair: [ 'hours',       'minutes'      ] },
+  { name: 'minutes',      pair: [ 'minutes',     'seconds'      ] },
+  { name: 'seconds',      pair: [ 'seconds',     'milliseconds' ] },
+  { name: 'milliseconds', pair: [ 'seconds',     'milliseconds' ] }
+]
+
+const short = {
+  'milliseconds': 'ms'
 }
 
 export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, replacerPosition) {
@@ -36,17 +49,15 @@ export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, repl
                      \n\t msReplacer value: ${inspect(msReplacer)}`)
 
   const info = parseMs(msReplacer)
-  if (info.days !== 0) {
-    return yellow(`[${plural(info.days, 'day')} ${plural(info.hours, 'hour')}]`)
-  } else if (info.hours !== 0) {
-    return yellow(`[${plural(info.hours, 'hour')} ${plural(info.minutes, 'minute')}]`)
-  } else if (info.minutes !== 0) {
-    return yellow(`[${plural(info.minutes, 'minute')} ${plural(info.seconds, 'second')}]`)
-  } else if (info.seconds !== 0) {
-    return yellow(`[${plural(info.seconds, 'second')} ${info.milliseconds} ms]`)
-  } else {
-    return yellow(`[0 seconds ${info.milliseconds} ms]`)
-  }
+  const rule = find(rules, rule => {
+    return (info as any)[rule.name] !== 0
+  }) || last(rules)
+
+  const bits = rule.pair
+    .map(key => pluralize(get(short, key, key), (info as any)[key], true))
+    .join(' ')
+
+  return yellow(`[${bits}]`)
 }
 
 export default <IHandler> { findAll, processOne }

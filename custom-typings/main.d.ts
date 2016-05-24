@@ -5,3 +5,4 @@
 /// <reference path="pretty-ms/index.d.ts" />
 /// <reference path="parse-ms/index.d.ts" />
 /// <reference path="is-negative-zero/index.d.ts" />
+/// <reference path="pluralize/index.d.ts" />

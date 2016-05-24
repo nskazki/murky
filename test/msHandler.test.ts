@@ -64,8 +64,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1e10)
     const nRes = nocolor('%ms', 1e10)
 
-    const cExp = yellow('[115 days 17 hours]')
-    const nExp = '[115 days 17 hours]'
+    const cExp = yellow('[3 months 25 days]')
+    const nExp = '[3 months 25 days]'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -75,8 +75,8 @@ describe('ms', () => {
     const cRes = color('%ms', -1e3)
     const nRes = nocolor('%ms', -1e3)
 
-    const cExp = yellow('[-1 second 0 ms]')
-    const nExp = '[-1 second 0 ms]'
+    const cExp = yellow('[-1 seconds 0 ms]')
+    const nExp = '[-1 seconds 0 ms]'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)

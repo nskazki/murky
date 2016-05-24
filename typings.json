@@ -11,6 +11,7 @@
     "mocha": "registry:dt/mocha#2.2.5+20160317120654",
     "power-assert": "registry:dt/power-assert#0.0.0+20160316155526",
     "power-assert-formatter": "registry:dt/power-assert-formatter#0.0.0+20160317120654",
-    "promise": "registry:dt/promise#7.1.1+20160316171810"
+    "promise": "registry:dt/promise#7.1.1+20160316171810",
+    "semver": "registry:dt/semver#4.3.4+20160316171810"
   }
 }

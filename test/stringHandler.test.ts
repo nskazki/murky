@@ -3,6 +3,7 @@
 import { color, nocolor } from '../src'
 import { bold, red, gray, magenta, yellow, green } from 'chalk'
 import { inspect } from 'util'
+import semver = require('semver')
 import assert = require('power-assert')
 
 describe('string', () => {
@@ -125,17 +126,30 @@ describe('string', () => {
     const cRes = color('%s', [ , undefined, null, [], {}, '', { '': undefined }, { '': null } ])
     const nRes = nocolor('%s', [ , undefined, null, [], {}, '', { '': undefined }, { '': null } ])
 
+    const _ = semver.gte(process.version, 'v0.11.0')
+      ? ''
+      : '\n '
+
     const cExp =
         `[ `
-      + `, ${gray('undefined')}`
-      + `, ${bold(null)}`
-      + `, []`
-      + `, {}`
-      + `, ${green(`''`)}`
-      + `, { ${green(`''`)}: ${gray('undefined')} }`
-      + `, { ${green(`''`)}: ${bold('null')} }`
+      + `,${_} ${gray('undefined')}`
+      + `,${_} ${bold(null)}`
+      + `,${_} []`
+      + `,${_} {}`
+      + `,${_} ${green(`''`)}`
+      + `,${_} { ${green(`''`)}: ${gray('undefined')} }`
+      + `,${_} { ${green(`''`)}: ${bold('null')} }`
       + ` ]`
-    const nExp = `[ , undefined, null, [], {}, '', { '': undefined }, { '': null } ]`
+    const nExp =
+        `[ `
+      + `,${_} undefined`
+      + `,${_} null`
+      + `,${_} []`
+      + `,${_} {}`
+      + `,${_} ''`
+      + `,${_} { '': undefined }`
+      + `,${_} { '': null }`
+      + ` ]`
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -183,24 +197,39 @@ describe('string', () => {
     assert.equal(nRes, '/./ /(?=.)/')
   })
 
-  it('promise x 1', () => {
-    const cRes = color('%s', Promise.resolve(123))
-    const nRes = nocolor('%s', Promise.resolve(123))
+  semver.lt(process.version, 'v0.12.0')
+    ? it.skip('promise x 1')
+    : it('promise x 1', () => {
+        const cRes = color('%s', Promise.resolve(123))
+        const nRes = nocolor('%s', Promise.resolve(123))
 
-    assert.equal(cRes, `Promise { ${yellow('123')} }`)
-    assert.equal(nRes, 'Promise { 123 }')
-  })
+        const cExp = semver.gte(process.version, 'v4.0.0')
+          ? `Promise { ${yellow('123')} }`
+          : `{}`
+        const nExp = semver.gte(process.version, 'v4.0.0')
+          ? `Promise { 123 }`
+          : `{}`
 
-  it('promise x 2', () => {
-    const cRes = color('%s %s', Promise.resolve(1), Promise.reject(2))
-    const nRes = nocolor('%s %s', Promise.resolve(1), Promise.reject(2))
+        assert.equal(cRes, cExp)
+        assert.equal(nRes, nExp)
+      })
 
-    const cExp = `Promise { ${yellow('1')} } Promise { <rejected> ${yellow('2') } }`
-    const nExp = 'Promise { 1 } Promise { <rejected> 2 }'
+  semver.lt(process.version, 'v0.12.0')
+    ? it.skip('promise x 2')
+    : it('promise x 2', () => {
+        const cRes = color('%s %s', Promise.resolve(1), Promise.reject(2))
+        const nRes = nocolor('%s %s', Promise.resolve(1), Promise.reject(2))
 
-    assert.equal(cRes, cExp)
-    assert.equal(nRes, nExp)
-  })
+        const cExp = semver.gte(process.version, 'v4.0.0')
+          ? `Promise { ${yellow('1')} } Promise { <rejected> ${yellow('2') } }`
+          : `{} {}`
+        const nExp = semver.gte(process.version, 'v4.0.0')
+          ? 'Promise { 1 } Promise { <rejected> 2 }'
+          : `{} {}`
+
+        assert.equal(cRes, cExp)
+        assert.equal(nRes, nExp)
+      })
 
   it('error x 1', () => {
     const error = {

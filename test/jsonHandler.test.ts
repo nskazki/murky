@@ -2,6 +2,7 @@
 
 import { color, nocolor } from '../src'
 import assert = require('power-assert')
+import semver = require('semver')
 
 describe('json', () => {
   it('undefined x 1', () => {
@@ -135,19 +136,23 @@ describe('json', () => {
     assert.equal(cRes, '{} {}')
   })
 
-  it('promise x 1', () => {
-    const cRes = color('%j', Promise.resolve(123))
-    const nRes = nocolor('%j', Promise.resolve(123))
-    assert.equal(cRes, nRes)
-    assert.equal(cRes, '{}')
-  })
+  semver.lt(process.version, 'v0.12.0')
+    ? it.skip('promise x 1')
+    : it('promise x 1', () => {
+        const cRes = color('%j', Promise.resolve(123))
+        const nRes = nocolor('%j', Promise.resolve(123))
+        assert.equal(cRes, nRes)
+        assert.equal(cRes, '{}')
+      })
 
-  it('promise x 2', () => {
-    const cRes = color('%j %j', Promise.resolve(1), Promise.reject(new Error('!')))
-    const nRes = nocolor('%j %j', Promise.resolve(1), Promise.reject(new Error('!')))
-    assert.equal(cRes, nRes)
-    assert.equal(cRes, '{} {}')
-  })
+  semver.lt(process.version, 'v0.12.0')
+    ? it.skip('promise x 2')
+    : it('promise x 2', () => {
+        const cRes = color('%j %j', Promise.resolve(1), Promise.reject(new Error('!')))
+        const nRes = nocolor('%j %j', Promise.resolve(1), Promise.reject(new Error('!')))
+        assert.equal(cRes, nRes)
+        assert.equal(cRes, '{} {}')
+      })
 
   it('%%', () => {
     const cRes = color('j %j %%j %%%j %%%%j', '02', '04')

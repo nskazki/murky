@@ -38,6 +38,8 @@ const short = {
   'milliseconds': 'ms'
 }
 
+pluralize.addUncountableRule('ms')
+
 export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, replacerPosition) {
   const msReplacer = isString(rawReplacer)
     ? str2num(rawReplacer)

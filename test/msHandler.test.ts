@@ -5,6 +5,50 @@ import { yellow } from 'chalk'
 import assert = require('power-assert')
 
 describe('ms', () => {
+  it('0', () => {
+    const cRes = color('%ms', 0)
+    const nRes = nocolor('%ms', 0)
+
+    const cExp = yellow('[0 seconds 0 ms]')
+    const nExp = '[0 seconds 0 ms]'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
+  it('-0', () => {
+    const cRes = color('%ms', -0)
+    const nRes = nocolor('%ms', -0)
+
+    const cExp = yellow('[0 seconds 0 ms]')
+    const nExp = '[0 seconds 0 ms]'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
+  it('1', () => {
+    const cRes = color('%ms', 1)
+    const nRes = nocolor('%ms', 1)
+
+    const cExp = yellow('[0 seconds 1 ms]')
+    const nExp = '[0 seconds 1 ms]'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
+  it('-1', () => {
+    const cRes = color('%ms', -1)
+    const nRes = nocolor('%ms', -1)
+
+    const cExp = yellow('[0 seconds -1 ms]')
+    const nExp = '[0 seconds -1 ms]'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
   it('1e1', () => {
     const cRes = color('%ms', 1e1)
     const nRes = nocolor('%ms', 1e1)

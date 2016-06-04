@@ -31,7 +31,7 @@ export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, repl
     ? str2num(rawReplacer)
     : rawReplacer
 
-  if (!isNumber(filesizeReplacer) || !isFinite(filesizeReplacer))
+  if (!isFinite(filesizeReplacer))
     return stringProcessOne(fmtStr, pInfo, rawReplacer, replacerPosition)
 
   return yellow(`${filesize(filesizeReplacer)}`)

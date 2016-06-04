@@ -245,29 +245,29 @@ describe('filesize', () => {
     assert.equal(nRes, nExp)
   })
 
-  it('throw: wrong replacer type', () => {
-    assert.throws(() => color('%b', []), '')
-    assert.throws(() => color('%b', {}), '{}')
-    assert.throws(() => color('%b', /./), '/./')
+  it('NOT throw: wrong replacer type, but original placeholder will be replaced by string placeholder', () => {
+    assert.equal(nocolor('%b', []), '[]')
+    assert.equal(nocolor('%b', {}), '{}')
+    assert.equal(nocolor('%b', /./), '/./')
   })
 
-  it('throw: string has unexpected format', () => {
-    assert.throws(() => color('%b', ''))
-    assert.throws(() => color('%b', '.'))
-    assert.throws(() => color('%b', 'e'), 'e')
-    assert.throws(() => color('%b', '.e'), '.e')
-    assert.throws(() => color('%b', '.e3'), '.e3')
-    assert.throws(() => color('%b', '-123e'), '-123e')
-    assert.throws(() => color('%b', 'e123'), 'e123')
+  it('NOT throw: string has unexpected format, but original placeholder will be replaced by string placeholder', () => {
+    assert.equal(nocolor('%b', ''), '')
+    assert.equal(nocolor('%b', '.'), '.')
+    assert.equal(nocolor('%b', 'e'), 'e')
+    assert.equal(nocolor('%b', '.e'), '.e')
+    assert.equal(nocolor('%b', '.e3'), '.e3')
+    assert.equal(nocolor('%b', '-123e'), '-123e')
+    assert.equal(nocolor('%b', 'e123'), 'e123')
   })
 
   it('throw: placeholders < args', () => {
     assert.throws(() => color('%b', 123, 123))
-    assert.throws(() => nocolor('%b %%ms %ms', 123, 123, 123))
+    assert.throws(() => nocolor('%b %%b %b', 123, 123, 123))
   })
 
   it('throw: placeholders > args', () => {
     assert.throws(() => color('%b'))
-    assert.throws(() => nocolor('%b %%ms %ms', 123))
+    assert.throws(() => nocolor('%b %%b %b', 123))
   })
 })

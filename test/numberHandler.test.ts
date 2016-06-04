@@ -391,20 +391,20 @@ describe('number', () => {
     assert.equal(nRes, nExp)
   })
 
-  it('throw: wrong replacer type', () => {
-    assert.throws(() => color('%n', []), '[]')
-    assert.throws(() => color('%n', {}), '{}')
-    assert.throws(() => color('%n', /./), '/./')
+  it('NOT throw: wrong replacer type, but original placeholder will be replaced by string placeholder', () => {
+    assert.equal(nocolor('%n', []), '[]')
+    assert.equal(nocolor('%n', {}), '{}')
+    assert.equal(nocolor('%n', /./), '/./')
   })
 
-  it('throw: string has unexpected format', () => {
-    assert.throws(() => color('%n', ''), '')
-    assert.throws(() => color('%n', '.'), '.')
-    assert.throws(() => color('%n', 'e'), 'e')
-    assert.throws(() => color('%n', '.e'), '.e')
-    assert.throws(() => color('%n', '.e3'), '.e3')
-    assert.throws(() => color('%n', '-123e'), '-123e')
-    assert.throws(() => color('%n', 'e123'), 'e123')
+  it('NOT throw: string has unexpected format, but original placeholder will be replaced by string placeholder', () => {
+    assert.equal(nocolor('%n', ''), '')
+    assert.equal(nocolor('%n', '.'), '.')
+    assert.equal(nocolor('%n', 'e'), 'e')
+    assert.equal(nocolor('%n', '.e'), '.e')
+    assert.equal(nocolor('%n', '.e3'), '.e3')
+    assert.equal(nocolor('%n', '-123e'), '-123e')
+    assert.equal(nocolor('%n', 'e123'), 'e123')
   })
 
   it('throw: placeholders < args', () => {

@@ -346,20 +346,20 @@ describe('ms', () => {
     assert.equal(nRes, nExp)
   })
 
-  it('throw: wrong replacer type', () => {
-    assert.throws(() => color('%ms', []), '')
-    assert.throws(() => color('%ms', {}), '{}')
-    assert.throws(() => color('%ms', /./), '/./')
+  it('NOT throw: wrong replacer type, but original placeholder will be replaced by string placeholder', () => {
+    assert.equal(nocolor('%ms', []), '[]')
+    assert.equal(nocolor('%ms', {}), '{}')
+    assert.equal(nocolor('%ms', /./), '/./')
   })
 
-  it('throw: string has unexpected format', () => {
-    assert.throws(() => color('%ms', ''))
-    assert.throws(() => color('%ms', '.'))
-    assert.throws(() => color('%ms', 'e'), 'e')
-    assert.throws(() => color('%ms', '.e'), '.e')
-    assert.throws(() => color('%ms', '.e3'), '.e3')
-    assert.throws(() => color('%ms', '-123e'), '-123e')
-    assert.throws(() => color('%ms', 'e123'), 'e123')
+  it('NOT throw: string has unexpected format, but original placeholder will be replaced by string placeholder', () => {
+    assert.equal(nocolor('%ms', ''), '')
+    assert.equal(nocolor('%ms', '.'), '.')
+    assert.equal(nocolor('%ms', 'e'), 'e')
+    assert.equal(nocolor('%ms', '.e'), '.e')
+    assert.equal(nocolor('%ms', '.e3'), '.e3')
+    assert.equal(nocolor('%ms', '-123e'), '-123e')
+    assert.equal(nocolor('%ms', 'e123'), 'e123')
   })
 
   it('throw: placeholders < args', () => {

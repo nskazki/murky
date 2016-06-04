@@ -6,6 +6,7 @@ import { inspect } from 'util'
 import { isString } from 'lodash'
 import uncolor = require('uncolor')
 import supportsColor = require('supports-color')
+import assert = require('assert')
 
 const murky: IMurky = (fmtStr, ...rawReplacers) => {
   // check user input: fmtStr
@@ -54,9 +55,7 @@ const murky: IMurky = (fmtStr, ...rawReplacers) => {
   }).reduce((acc, part) => acc.concat(part), [])
 
   const psInfoErrors = [ ...psInfoOrderErrors, ...psInfoCrossErrors ]
-  if (psInfoErrors.length !== 0) {
-    throw new Error(`murky: internal problem!\n ${psInfoErrors.join('\n ')}`)
-  }
+  assert.ok(psInfoErrors.length === 0, `murky: internal problem!\n ${psInfoErrors.join('\n ')}`)
 
   // check user input: rawReplacer
   if (psInfo.length !== rawReplacers.length)
@@ -129,9 +128,7 @@ const murky: IMurky = (fmtStr, ...rawReplacers) => {
   })
 
   const rsErrors = [ ...rsOrderErrors, ...rsTypeErrors ]
-  if (rsErrors.length !== 0) {
-    throw new Error(`murky: internal problem: \n ${rsErrors.join('\n ')}`)
-  }
+  assert.ok(rsErrors.length === 0, `murky: internal problem: \n ${rsErrors.join('\n ')}`)
 
   // return result string
   return resStr

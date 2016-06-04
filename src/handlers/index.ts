@@ -8,11 +8,13 @@ import stringHandler from './stringHandler'
 import tabHandler from './tabHandler'
 import numberHandler from './numberHandler'
 import msHandler from './msHandler'
+import filesizeHandler from './filesizeHandler'
 
 const handlers = [
   jsonHandler, lineHandler,
   stringHandler, tabHandler,
-  numberHandler, msHandler ]
+  numberHandler, msHandler,
+  filesizeHandler ]
 
 export const findAll: IFindAll = function(fmtStr) {
   const psInfo = handlers

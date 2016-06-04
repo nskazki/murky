@@ -26,6 +26,7 @@
     "src/handlers/tabHandler.ts",
     "src/handlers/numberHandler.ts",
     "src/handlers/msHandler.ts",
+    "src/handlers/filesizeHandler.ts",
 
     "src/index.ts",
 
@@ -34,6 +35,7 @@
     "test/lineHandler.test.ts",
     "test/tabHandler.test.ts",
     "test/numberHandler.test.ts",
-    "test/msHandler.test.ts"
+    "test/msHandler.test.ts",
+    "test/filesizeHandler.test.ts"
   ]
 }

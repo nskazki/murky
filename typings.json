@@ -3,6 +3,7 @@
   "dependencies": {},
   "globalDependencies": {
     "chalk": "registry:dt/chalk#0.4.0+20160317120654",
+    "filesize": "registry:dt/filesize#3.2.1+20160412140448",
     "lodash": "registry:dt/lodash#3.10.0+20160330154726",
     "node": "registry:dt/node#6.0.0+20160523035754"
   },

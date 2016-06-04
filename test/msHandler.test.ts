@@ -9,8 +9,8 @@ describe('ms', () => {
     const cRes = color('%ms', 0)
     const nRes = nocolor('%ms', 0)
 
-    const cExp = yellow('[0 ms]')
-    const nExp = '[0 ms]'
+    const cExp = yellow('0 ms')
+    const nExp = '0 ms'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -20,8 +20,8 @@ describe('ms', () => {
     const cRes = color('%ms', -0)
     const nRes = nocolor('%ms', -0)
 
-    const cExp = yellow('[0 ms]')
-    const nExp = '[0 ms]'
+    const cExp = yellow('0 ms')
+    const nExp = '0 ms'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -31,8 +31,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1)
     const nRes = nocolor('%ms', 1)
 
-    const cExp = yellow('[1 ms]')
-    const nExp = '[1 ms]'
+    const cExp = yellow('1 ms')
+    const nExp = '1 ms'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -42,8 +42,8 @@ describe('ms', () => {
     const cRes = color('%ms', -1)
     const nRes = nocolor('%ms', -1)
 
-    const cExp = yellow('[-1 ms]')
-    const nExp = '[-1 ms]'
+    const cExp = yellow('-1 ms')
+    const nExp = '-1 ms'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -53,8 +53,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1e1)
     const nRes = nocolor('%ms', 1e1)
 
-    const cExp = yellow('[10 ms]')
-    const nExp = '[10 ms]'
+    const cExp = yellow('10 ms')
+    const nExp = '10 ms'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -64,8 +64,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1e3)
     const nRes = nocolor('%ms', 1e3)
 
-    const cExp = yellow('[1 second]')
-    const nExp = '[1 second]'
+    const cExp = yellow('1 second')
+    const nExp = '1 second'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -75,8 +75,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1e5)
     const nRes = nocolor('%ms', 1e5)
 
-    const cExp = yellow('[1 minute 40 seconds]')
-    const nExp = '[1 minute 40 seconds]'
+    const cExp = yellow('1 minute 40 seconds')
+    const nExp = '1 minute 40 seconds'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -86,8 +86,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1e7)
     const nRes = nocolor('%ms', 1e7)
 
-    const cExp = yellow('[2 hours 46 minutes]')
-    const nExp = '[2 hours 46 minutes]'
+    const cExp = yellow('2 hours 46 minutes')
+    const nExp = '2 hours 46 minutes'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -97,8 +97,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1e9)
     const nRes = nocolor('%ms', 1e9)
 
-    const cExp = yellow('[11 days 13 hours]')
-    const nExp = '[11 days 13 hours]'
+    const cExp = yellow('11 days 13 hours')
+    const nExp = '11 days 13 hours'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -108,8 +108,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1e10)
     const nRes = nocolor('%ms', 1e10)
 
-    const cExp = yellow('[3 months 25 days]')
-    const nExp = '[3 months 25 days]'
+    const cExp = yellow('3 months 25 days')
+    const nExp = '3 months 25 days'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -119,8 +119,8 @@ describe('ms', () => {
     const cRes = color('%ms', -1e3)
     const nRes = nocolor('%ms', -1e3)
 
-    const cExp = yellow('[-1 seconds]')
-    const nExp = '[-1 seconds]'
+    const cExp = yellow('-1 seconds')
+    const nExp = '-1 seconds'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -130,8 +130,8 @@ describe('ms', () => {
     const cRes = color('%ms', -1e6)
     const nRes = nocolor('%ms', -1e6)
 
-    const cExp = yellow('[-16 minutes -40 seconds]')
-    const nExp = '[-16 minutes -40 seconds]'
+    const cExp = yellow('-16 minutes -40 seconds')
+    const nExp = '-16 minutes -40 seconds'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -141,15 +141,15 @@ describe('ms', () => {
     const cRes = color('%ms', 1.234e5)
     const nRes = nocolor('%ms', 1.234e5)
 
-    const cExp = yellow('[2 minutes 3 seconds]')
-    const nExp = '[2 minutes 3 seconds]'
+    const cExp = yellow('2 minutes 3 seconds')
+    const nExp = '2 minutes 3 seconds'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
   })
 
   it('throw: wrong replacer type', () => {
-    assert.throws(() => color('%ms', []), '[]')
+    assert.throws(() => color('%ms', []), '')
     assert.throws(() => color('%ms', {}), '{}')
     assert.throws(() => color('%ms', /./), '/./')
   })

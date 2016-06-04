@@ -29,7 +29,7 @@ export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, repl
                      \n\t msReplacer type: ${typeof msReplacer}\
                      \n\t msReplacer value: ${inspect(msReplacer)}`)
 
-  return yellow(`[${prettyMs(msReplacer)}]`)
+  return yellow(`${prettyMs(msReplacer)}`)
 }
 
 export default <IHandler> { findAll, processOne }

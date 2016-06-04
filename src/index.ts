@@ -16,8 +16,10 @@ const murky: IMurky = (fmtStr, ...rawReplacers) => {
       \n\t arg data: ${inspect(fmtStr)}`)
 
   // get placeholders info
-  const clrStr = fmtStr.replace(/%%/g, '  ')
-  const psInfo = handlers.findAll(clrStr)
+  // placeholder finders may has problems with %%
+  // tmpStr used only to get info about placeholders
+  const tmpStr = fmtStr.replace(/%%/g, '  ')
+  const psInfo = handlers.findAll(tmpStr)
 
   // check placeholders info
   const psInfoOrderErrors = psInfo.map((pInfoA, indexA) => {

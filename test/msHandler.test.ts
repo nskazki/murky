@@ -9,8 +9,8 @@ describe('ms', () => {
     const cRes = color('%ms', 0)
     const nRes = nocolor('%ms', 0)
 
-    const cExp = yellow('[0 seconds 0 ms]')
-    const nExp = '[0 seconds 0 ms]'
+    const cExp = yellow('[0 ms]')
+    const nExp = '[0 ms]'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -20,8 +20,8 @@ describe('ms', () => {
     const cRes = color('%ms', -0)
     const nRes = nocolor('%ms', -0)
 
-    const cExp = yellow('[0 seconds 0 ms]')
-    const nExp = '[0 seconds 0 ms]'
+    const cExp = yellow('[0 ms]')
+    const nExp = '[0 ms]'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -31,8 +31,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1)
     const nRes = nocolor('%ms', 1)
 
-    const cExp = yellow('[0 seconds 1 ms]')
-    const nExp = '[0 seconds 1 ms]'
+    const cExp = yellow('[1 ms]')
+    const nExp = '[1 ms]'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -42,8 +42,8 @@ describe('ms', () => {
     const cRes = color('%ms', -1)
     const nRes = nocolor('%ms', -1)
 
-    const cExp = yellow('[0 seconds -1 ms]')
-    const nExp = '[0 seconds -1 ms]'
+    const cExp = yellow('[-1 ms]')
+    const nExp = '[-1 ms]'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -53,8 +53,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1e1)
     const nRes = nocolor('%ms', 1e1)
 
-    const cExp = yellow('[0 seconds 10 ms]')
-    const nExp = '[0 seconds 10 ms]'
+    const cExp = yellow('[10 ms]')
+    const nExp = '[10 ms]'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -64,8 +64,8 @@ describe('ms', () => {
     const cRes = color('%ms', 1e3)
     const nRes = nocolor('%ms', 1e3)
 
-    const cExp = yellow('[1 second 0 ms]')
-    const nExp = '[1 second 0 ms]'
+    const cExp = yellow('[1 second]')
+    const nExp = '[1 second]'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -119,8 +119,8 @@ describe('ms', () => {
     const cRes = color('%ms', -1e3)
     const nRes = nocolor('%ms', -1e3)
 
-    const cExp = yellow('[-1 seconds 0 ms]')
-    const nExp = '[-1 seconds 0 ms]'
+    const cExp = yellow('[-1 seconds]')
+    const nExp = '[-1 seconds]'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)

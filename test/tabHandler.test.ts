@@ -66,7 +66,7 @@ describe('tab', () => {
     assert.equal(inspect(nRes), inspect(nExp))
   })
 
-    it('string: multiline pad & multiline replacer', () => {
+  it('string: multiline pad & multiline replacer', () => {
     const cRes = color('some\be\vstrange\r\vline\rL %t', 'what am I doing\nwith my life?')
     const nRes = nocolor('some\be\vstrange\r\vline\rL %t', 'what am I doing\nwith my life?')
 

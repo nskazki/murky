@@ -8,20 +8,23 @@ import uncolor = require('uncolor')
 import supportsColor = require('supports-color')
 import assert = require('assert')
 
-const murky: IMurky = function(fmtStr, ...rawReplacers) {
-  // rawReplacers & fmtStr may be redefined in case if fmtStr is missed
-  // look "like util.format without fmtStr" code block
-
-  // fmtStr may be extended in case if count(placeholders(fmtStr)) < rawReplacers.length
-  // look "check psInfo and rawReplacer size" code block size
-
+const murky: IMurky = function() {
   // like util.format without arguments
   if (arguments.length === 0)
     return ''
 
-  // like util.format without fmtStr
+  // rawReplacers & fmtStr may be redefined in case if fmtStr is missed
+  // look "like util.format without fmtStr" code block
+  //
+  // fmtStr may be extended in case if count(placeholders(fmtStr)) < rawReplacers.length
+  // look "check psInfo and rawReplacer size" code block size
+  const args = toArray(arguments)
+  let fmtStr: string = args[0]
+  let rawReplacers: Array<any> = args.slice(1)
+
   if (!isString(fmtStr)) {
-    rawReplacers = toArray(arguments)
+    // like util.format without fmtStr
+    rawReplacers = args
     fmtStr = fill(new Array(rawReplacers.length), '%s').join(' ')
   }
 
@@ -175,7 +178,7 @@ export const color: IMurky = function() {
 export default color
 
 // ES6 Modules default exports interop with CommonJS
-module.exports = murky
-module.exports.default = murky
+module.exports = color
+module.exports.default = color
 module.exports.color = color
 module.exports.nocolor = nocolor

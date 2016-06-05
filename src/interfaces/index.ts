@@ -1,7 +1,8 @@
 'use strict'
 
 export interface IMurky {
-  (fmtStr: string, ...rawReplacers: Array<any>): string
+  (fmtStr?: string, ...rawReplacers: Array<any>): string
+  (...rawReplacers: Array<any>): string
 }
 
 export interface IHandler {

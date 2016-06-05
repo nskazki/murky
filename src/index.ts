@@ -3,17 +3,21 @@
 import handlers from './handlers'
 import { IMurky } from './interfaces'
 import { inspect } from 'util'
-import { isString } from 'lodash'
+import { isString, fill, toArray } from 'lodash'
 import uncolor = require('uncolor')
 import supportsColor = require('supports-color')
 import assert = require('assert')
 
-const murky: IMurky = (fmtStr, ...rawReplacers) => {
-  // check user input: fmtStr
-  if (!isString(fmtStr))
-    throw new Error(`murky: input problem: the first arg must be a string!\
-      \n\t arg type: ${typeof fmtStr}\
-      \n\t arg data: ${inspect(fmtStr)}`)
+const murky: IMurky = function(fmtStr, ...rawReplacers) {
+  // like util.format without arguments
+  if (arguments.length === 0)
+    return ''
+
+  // like util.format without fmtStr
+  if (!isString(fmtStr)) {
+    rawReplacers = toArray(arguments)
+    fmtStr = fill(new Array(rawReplacers.length), '%s').join(' ')
+  }
 
   // get placeholders info
   // placeholder finders may has problems with %%
@@ -137,17 +141,17 @@ const murky: IMurky = (fmtStr, ...rawReplacers) => {
 }
 
 // it's required for the *.d.ts formation
-export default murky
-
-export const nocolor: IMurky = (fmtStr, ...rawReplacers) => {
-  return uncolor(murky(fmtStr, ...rawReplacers))
+export const nocolor: IMurky = function() {
+  return uncolor(murky.apply(null, arguments)) as string
 }
 
-export const color: IMurky = (fmtStr, ...rawReplacers) => {
+export const color: IMurky = function() {
   return supportsColor
-    ? murky(fmtStr, ...rawReplacers)
-    : nocolor(fmtStr, ...rawReplacers)
+    ? murky.apply(null, arguments) as string
+    : nocolor.apply(null, arguments) as string
 }
+
+export default color
 
 // ES6 Modules default exports interop with CommonJS
 module.exports = murky

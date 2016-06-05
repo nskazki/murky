@@ -406,14 +406,4 @@ describe('number', () => {
     assert.equal(nocolor('%n', '-123e'), '-123e')
     assert.equal(nocolor('%n', 'e123'), 'e123')
   })
-
-  it('throw: placeholders < args', () => {
-    assert.throws(() => color('%n', 123, 123))
-    assert.throws(() => nocolor('%n %%n %n', 123, 123, 123))
-  })
-
-  it('throw: placeholders > args', () => {
-    assert.throws(() => color('%n'))
-    assert.throws(() => nocolor('%n %%n %n', 123))
-  })
 })

@@ -167,14 +167,4 @@ describe('json', () => {
     assert.equal(cRes, nRes)
     assert.equal(cRes, '\n\n\n\n1\r2\v\v3\t\t\t4')
   })
-
-  it('throw: placeholders < args', () => {
-    assert.throws(() => color('%j', 123, 123))
-    assert.throws(() => nocolor('%j %%j %j', 123, 123, 123))
-  })
-
-  it('throw: placeholders > args', () => {
-    assert.throws(() => color('%j'))
-    assert.throws(() => nocolor('%j %%j %j', 123))
-  })
 })

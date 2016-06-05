@@ -36,6 +36,8 @@
     "test/tabHandler.test.ts",
     "test/numberHandler.test.ts",
     "test/msHandler.test.ts",
-    "test/filesizeHandler.test.ts"
+    "test/filesizeHandler.test.ts",
+
+    "test/index.test.ts"
   ]
 }

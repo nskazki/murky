@@ -361,14 +361,4 @@ describe('ms', () => {
     assert.equal(nocolor('%ms', '-123e'), '-123e')
     assert.equal(nocolor('%ms', 'e123'), 'e123')
   })
-
-  it('throw: placeholders < args', () => {
-    assert.throws(() => color('%ms', 123, 123))
-    assert.throws(() => nocolor('%ms %%ms %ms', 123, 123, 123))
-  })
-
-  it('throw: placeholders > args', () => {
-    assert.throws(() => color('%ms'))
-    assert.throws(() => nocolor('%ms %%ms %ms', 123))
-  })
 })

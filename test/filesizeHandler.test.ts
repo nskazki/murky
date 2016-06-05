@@ -260,14 +260,4 @@ describe('filesize', () => {
     assert.equal(nocolor('%b', '-123e'), '-123e')
     assert.equal(nocolor('%b', 'e123'), 'e123')
   })
-
-  it('throw: placeholders < args', () => {
-    assert.throws(() => color('%b', 123, 123))
-    assert.throws(() => nocolor('%b %%b %b', 123, 123, 123))
-  })
-
-  it('throw: placeholders > args', () => {
-    assert.throws(() => color('%b'))
-    assert.throws(() => nocolor('%b %%b %b', 123))
-  })
 })

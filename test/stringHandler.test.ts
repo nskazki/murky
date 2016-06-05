@@ -277,14 +277,4 @@ describe('string', () => {
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
   })
-
-  it('throw: placeholders < args', () => {
-    assert.throws(() => color('%s', 123, 123))
-    assert.throws(() => nocolor('%s %%s %s', 123, 123, 123))
-  })
-
-  it('throw: placeholders > args', () => {
-    assert.throws(() => color('%s'))
-    assert.throws(() => nocolor('%s %%s %s', 123))
-  })
 })

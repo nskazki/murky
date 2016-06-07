@@ -6,8 +6,9 @@ import assert = require('power-assert')
 
 describe('index', () => {
   it('check export', () => {
-    assert.equal(color, murky)
+    assert.notEqual(color, murky)
     assert.notEqual(color, nocolor)
+    assert.notEqual(nocolor, murky)
   })
 
   it('call without args', () => {

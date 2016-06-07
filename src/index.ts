@@ -169,16 +169,18 @@ export const nocolor: IMurky = function() {
   return uncolor(murky.apply(null, arguments)) as string
 }
 
-export const color: IMurky = function() {
+export const color: IMurky = murky
+
+const auto: IMurky = function() {
   return supportsColor
-    ? murky.apply(null, arguments) as string
+    ? color.apply(null, arguments) as string
     : nocolor.apply(null, arguments) as string
 }
 
-export default color
+export default auto
 
 // ES6 Modules default exports interop with CommonJS
-module.exports = color
-module.exports.default = color
+module.exports = auto
+module.exports.default = auto
 module.exports.color = color
 module.exports.nocolor = nocolor

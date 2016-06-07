@@ -6,7 +6,6 @@ import { execGlobal } from '../helpers/regExp'
 import { extname, basename } from 'path'
 import { chain, isString } from 'lodash'
 import { processOne as baseProcessOne } from './stringHandler'
-import { green } from 'chalk'
 import { fmtError, isIErrorLike } from 'error-shortener'
 import oneline from 'string-true-oneline'
 
@@ -30,7 +29,7 @@ export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, repl
   const multilineReplacer = baseProcessOne(fmtStr, pInfo, rawReplacer, replacerPosition)
   const onelineReplacer = !isString(rawReplacer)
     ? multilineReplacer.replace(/,\n\s+/g, ', ')
-    : green(oneline(multilineReplacer))
+    : oneline(multilineReplacer)
 
   return onelineReplacer
 }

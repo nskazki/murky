@@ -1,7 +1,7 @@
 'use strict'
 
 import murky, { color, nocolor } from '../src'
-import { yellow, green } from 'chalk'
+import { yellow } from 'chalk'
 import assert = require('power-assert')
 
 describe('index', () => {
@@ -57,7 +57,7 @@ describe('index', () => {
     const cAct = color('', 123, 'hi')
     const nAct = nocolor('', 123, 'hi')
 
-    const cExp = ' ' + yellow('123') + ' ' + green('hi')
+    const cExp = ' ' + yellow('123') + ' hi'
     const nExp = ' 123 hi'
 
     assert.equal(cAct, cExp)

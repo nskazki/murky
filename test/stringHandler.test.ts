@@ -68,27 +68,27 @@ describe('string', () => {
     const cRes = color('%s %s %s', '古', '🐴', '123')
     const nRes = nocolor('%s %s %s', '古', '🐴', '123')
 
-    assert.equal(cRes, `${green('古')} ${green('🐴')} ${green('123')}`)
-    assert.equal(nRes, '古 🐴 123')
+    const exp = '古 🐴 123'
+    assert.equal(cRes, exp)
+    assert.equal(nRes, exp)
   })
 
   it('multiline string x 1', () => {
     const cRes = color('%s', '1\n2\n3')
     const nRes = nocolor('%s', '1\n2\n3')
 
-    assert.equal(cRes, `${green('1\n2\n3')}`)
-    assert.equal(nRes, '1\n2\n3')
+    const exp = '1\n2\n3'
+    assert.equal(cRes, exp)
+    assert.equal(nRes, exp)
   })
 
   it('multiline string x 2', () => {
     const cRes = color('%s %s', '\r\n1', '\n')
     const nRes = nocolor('%s %s', '\r\n1', '\n')
 
-    const cExp =  green('\n1') + ' ' + green('\n')
-    const nExp = '\n1 \n'
-
-    assert.equal(cRes, cExp)
-    assert.equal(nRes, nExp)
+    const exp = '\n1 \n'
+    assert.equal(cRes, exp)
+    assert.equal(nRes, exp)
   })
 
   it('hash x 1', () => {
@@ -260,11 +260,9 @@ describe('string', () => {
     const cRes = color('j %s %%s %%%s %%%%s', '02', '04')
     const nRes = nocolor('j %s %%s %%%s %%%%s', '02', '04')
 
-    const cExp = `j ${green('02')} %s %${green('04')} %%s`
-    const nExp = 'j 02 %s %04 %%s'
-
-    assert.equal(cRes, cExp)
-    assert.equal(nRes, nExp)
+    const exp = 'j 02 %s %04 %%s'
+    assert.equal(cRes, exp)
+    assert.equal(nRes, exp)
   })
 
   it('\\n', () => {

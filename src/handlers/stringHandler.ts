@@ -4,7 +4,7 @@ import { IFindAll, IProcessOne, IHandler } from '../interfaces'
 import { PInfoRE as PInfo } from '../helpers/pInfo'
 import { execGlobal } from '../helpers/regExp'
 import { extname, basename } from 'path'
-import { green, magenta } from 'chalk'
+import { magenta } from 'chalk'
 import { inspect } from 'util'
 import { isString, isDate } from 'lodash'
 import { fmtError, isIErrorLike } from 'error-shortener'
@@ -24,7 +24,7 @@ export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, repl
     return magenta(rawReplacer.toISOString())
 
   if (isString(rawReplacer))
-    return green(stringRender(rawReplacer))
+    return stringRender(rawReplacer)
 
   if (isIErrorLike(rawReplacer))
     return fmtError(rawReplacer)

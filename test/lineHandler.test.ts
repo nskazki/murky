@@ -9,7 +9,7 @@ describe('line', () => {
     const cRes = color('%l', '\\n hello \\n')
     const nRes = nocolor('%l', '\\n hello \\n')
 
-    assert.equal(cRes, green('\\n hello \\n'))
+    assert.equal(cRes, '\\n hello \\n')
     assert.equal(nRes, '\\n hello \\n')
   })
 
@@ -34,7 +34,7 @@ describe('line', () => {
     const cRes = color('%l', '\n hello')
     const nRes = nocolor('%l', '\n hello')
 
-    assert.equal(cRes, green('hello'))
+    assert.equal(cRes, 'hello')
     assert.equal(nRes, 'hello')
   })
 
@@ -42,7 +42,7 @@ describe('line', () => {
     const cRes = color('%l', 'hello \n')
     const nRes = nocolor('%l', 'hello \n')
 
-    assert.equal(cRes, green('hello'))
+    assert.equal(cRes, 'hello')
     assert.equal(nRes, 'hello')
   })
 
@@ -50,7 +50,7 @@ describe('line', () => {
     const cRes = color('%l', '\n hello \n')
     const nRes = nocolor('%l', '\n hello \n')
 
-    assert.equal(cRes, green('hello'))
+    assert.equal(cRes, 'hello')
     assert.equal(nRes, 'hello')
   })
 
@@ -58,7 +58,7 @@ describe('line', () => {
     const cRes = color('%l', '  \n   hello    \n ')
     const nRes = nocolor('%l', '  \n   hello    \n ')
 
-    assert.equal(cRes, green('hello'))
+    assert.equal(cRes, 'hello')
     assert.equal(nRes, 'hello')
   })
 
@@ -66,7 +66,7 @@ describe('line', () => {
     const cRes = color('%l', 'h\ve\vl\rl\f\bo \nw\no\r\v\r\vr\v\rl\nd !')
     const nRes = nocolor('%l', 'h\ve\vl\rl\f\bo \nw\no\r\v\r\vr\v\rl\nd !')
 
-    assert.equal(cRes, green('h e l l o w o r l d !'))
+    assert.equal(cRes, 'h e l l o w o r l d !')
     assert.equal(nRes, 'h e l l o w o r l d !')
   })
 

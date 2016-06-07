@@ -336,14 +336,20 @@ describe('ms', () => {
   })
 
   it('string: 1.234e5', () => {
-    const cRes = color('%ms', 1.234e5)
-    const nRes = nocolor('%ms', 1.234e5)
+    const cRes = color('%ms', '1.234e5')
+    const nRes = nocolor('%ms', '1.234e5')
 
     const cExp = yellow('2 minutes 3 seconds')
     const nExp = '2 minutes 3 seconds'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
+  })
+
+  it('NOT throw: not fiite number, but original placeholder will be replaced by string placeholder', () => {
+    assert.equal(nocolor('%ms', Infinity), 'Infinity')
+    assert.equal(nocolor('%ms', -Infinity), '-Infinity')
+    assert.equal(nocolor('%ms', NaN), 'NaN')
   })
 
   it('NOT throw: wrong replacer type, but original placeholder will be replaced by string placeholder', () => {

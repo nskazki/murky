@@ -245,6 +245,23 @@ describe('filesize', () => {
     assert.equal(nRes, nExp)
   })
 
+  it('string: 1.234e5', () => {
+    const cRes = color('%b', '1.234e5')
+    const nRes = nocolor('%b', '1.234e5')
+
+    const cExp = yellow('120.51KB')
+    const nExp = '120.51KB'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
+  it('NOT throw: not fiite number, but original placeholder will be replaced by string placeholder', () => {
+    assert.equal(nocolor('%b', Infinity), 'Infinity')
+    assert.equal(nocolor('%b', -Infinity), '-Infinity')
+    assert.equal(nocolor('%b', NaN), 'NaN')
+  })
+
   it('NOT throw: wrong replacer type, but original placeholder will be replaced by string placeholder', () => {
     assert.equal(nocolor('%b', []), '[]')
     assert.equal(nocolor('%b', {}), '{}')

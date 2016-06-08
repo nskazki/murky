@@ -65,16 +65,17 @@ Notes:
 * `%j` - alias to `%j` of `util.format`.
 * `%s` - cast any value to string by [util.inspect](https://nodejs.org/api/util.html#util_util_inspect_object_options).
 * `%l` - first cast value to string and then flattens result by [string-true-oneline](https://github.com/nskazki/string-true-oneline).
-* `%t` - first cast value to string and then adds pad to the result, like on the demo picture. Project was started for sake of it :)
+* `%t` - first cast value to string and then adds pad to the result, like on the demo picture.
+  <br>Project was started for sake of it :)
 * `%d` and `%n` -
   firstly, if the value is not a finite number or a string which is contained a finite number,
-  then the value will be processed by strings handler, like `%s`.
-  If the value contains a finite number, it will be formatted by severing of the digit triples.
+  <br>then the value will be processed by strings handler, like `%s`.
+  <br>If the value contains a finite number, it will be formatted by severing of the digit triples.
 * `%m` and `%ms` -
   if the value contains a finite number, it will be formatted by [pretty-large-ms](https://github.com/nskazki/pretty-large-ms).
-  Otherwise value will be processed by strings handler, like `%s`.
+  <br>Otherwise value will be processed by strings handler, like `%s`.
 * `%f` - if the value contains a finite number, it will be formatted by [filesize](https://github.com/avoidwork/filesize.js).
-  Otherwise value will be processed by strings handler, like `%s`.
+  <br>Otherwise value will be processed by strings handler, like `%s`.
 
 ## More demo's
 

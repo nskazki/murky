@@ -63,8 +63,17 @@ Notes:
 ## List of placeholders
 
 * `%j` - alias to `%j` of `util.format`.
-* `%s` - cast any value to string by [util.inspect](https://nodejs.org/api/util.html#util_util_inspect_object_options).
-* `%l` - first cast value to string and then flattens result by [string-true-oneline](https://github.com/nskazki/string-true-oneline).
+* `%s` - cast any value to string.
+  * date will be formatted by [Date.prototype.toISOString](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString).
+  * string will be normalized by [string-render](https://github.com/nskazki/string-render).
+  * error will be formatted by [error-shortener](https://github.com/nskazki/error-shortener).
+  * other types will be processed by [util.inspect](https://nodejs.org/api/util.html#util_util_inspect_object_options).
+* `%l` - first cast value to string and then flattens result.
+  * string will be flatted by [string-true-oneline](https://github.com/nskazki/string-true-oneline)
+  * error will be deprived of stack,
+  formatted by [error-shortener](https://github.com/nskazki/error-shortener)
+  and flatted by [string-true-oneline](https://github.com/nskazki/string-true-oneline).
+  * other types will be formatted by `%s` handler and manually flatted.
 * `%t` - first cast value to string and then adds pad to the result, like on the demo picture.
   <br>Project was started for sake of it :)
 * `%d` and `%n` -

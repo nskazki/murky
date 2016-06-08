@@ -36,8 +36,14 @@ export const processOne: IProcessOne = function(fmtStr, pInfo, rawReplacer, repl
   if (!isFinite(numReplacer))
     return inspect(numReplacer, { colors: true })
 
+  if (Math.abs(numReplacer) > 0 && Math.abs(numReplacer) < 0.01)
+    return yellow(numReplacer.toString())
+
   const precision = isInteger(numReplacer) ? 0 : 2
   const numberStr = numReplacer.toFixed(precision)
+
+  if (/e/.test(numberStr))
+    return yellow(numberStr)
 
   const negative = isNegative(numReplacer) ? '-' : ''
   const base = last(/\d+/.exec(numberStr))

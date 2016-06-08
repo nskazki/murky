@@ -38,6 +38,17 @@ describe('number', () => {
     assert.equal(nRes, nExp)
   })
 
+  it('+integer: 1e200', () => {
+    const cRes = color('%n', 1e200)
+    const nRes = nocolor('%n', 1e200)
+
+    const cExp = yellow('1e+200')
+    const nExp = '1e+200'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
   it('-integer: -1e2', () => {
     const cRes = color('%n', -1e2)
     const nRes = nocolor('%n', -1e2)
@@ -66,6 +77,17 @@ describe('number', () => {
 
     const cExp = yellow('-100,000,000')
     const nExp = '-100,000,000'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
+  it('-integer: -1e200', () => {
+    const cRes = color('%n', -1e200)
+    const nRes = nocolor('%n', -1e200)
+
+    const cExp = yellow('-1e+200')
+    const nExp = '-1e+200'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
@@ -137,6 +159,17 @@ describe('number', () => {
     assert.equal(nRes, nExp)
   })
 
+  it('float: 1e-200', () => {
+    const cRes = color('%n', 1e-200)
+    const nRes = nocolor('%n', 1e-200)
+
+    const cExp = yellow('1e-200')
+    const nExp = '1e-200'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
   it('float: -1.2', () => {
     const cRes = color('%n', -1.2)
     const nRes = nocolor('%n', -1.2)
@@ -203,6 +236,28 @@ describe('number', () => {
     assert.equal(nRes, nExp)
   })
 
+  it('float: 0.001', () => {
+    const cRes = color('%n', 0.001)
+    const nRes = nocolor('%n', 0.001)
+
+    const cExp = yellow('0.001')
+    const nExp = '0.001'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
+  it('float: 1e-200', () => {
+    const cRes = color('%n', 1e-200)
+    const nRes = nocolor('%n', 1e-200)
+
+    const cExp = yellow('1e-200')
+    const nExp = '1e-200'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
   it('float: -12345678.9', () => {
     const cRes = color('%n', -12345678.9)
     const nRes = nocolor('%n', -12345678.9)
@@ -231,6 +286,28 @@ describe('number', () => {
 
     const cExp = yellow('-123,456.79')
     const nExp = '-123,456.79'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
+  it('float: -0.001', () => {
+    const cRes = color('%n', -0.001)
+    const nRes = nocolor('%n', -0.001)
+
+    const cExp = yellow('-0.001')
+    const nExp = '-0.001'
+
+    assert.equal(cRes, cExp)
+    assert.equal(nRes, nExp)
+  })
+
+  it('float: -1e-200', () => {
+    const cRes = color('%n', -1e-200)
+    const nRes = nocolor('%n', -1e-200)
+
+    const cExp = yellow('-1e-200')
+    const nExp = '-1e-200'
 
     assert.equal(cRes, cExp)
     assert.equal(nRes, nExp)
